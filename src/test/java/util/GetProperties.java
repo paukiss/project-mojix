@@ -14,7 +14,7 @@ public class GetProperties {
 
     private GetProperties(){
         Properties properties = new Properties();
-        String nameFile = "todoist.properties";
+        String nameFile = "ticktick.properties";
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream(nameFile);
         if (inputStream != null){
             try {

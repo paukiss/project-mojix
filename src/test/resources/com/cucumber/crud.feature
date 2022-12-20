@@ -1,4 +1,5 @@
 Feature: Automation Web UI on TickTick page
+  @test
   Scenario: CRUD of a task list
     Given Load page ticktick
     When User log in

@@ -42,7 +42,6 @@ public class TestBase {
     }
 
     @When("User log in")
-    @Test
     public void logginUser() {
         loginSession.loginButton.click();
         loginPageSession.emailTxt.setText(user);
@@ -57,19 +56,19 @@ public class TestBase {
     }
 
     @When("User create a new task")
-    @Test
     public void createTask() {
         createTaskList.buttonPlusAddList.click();
         addList.titleAddList.waitControlIsNotVisibleElement();
     }
     @Then("The task is named {string}")
-    public void theTaskIsNamed(String task) {
+    public void theTaskIsNamed(String task) throws InterruptedException {
         newTaskName = task;
         addList.nameTaskList.setText(newTaskName);
         addList.saveList.click();
         taskList.labelTask(newTaskName).waitControlIsNotVisibleElement();
         taskList.labelTask(newTaskName).click();
         optionTaskList.buttonDots(newTaskName).waitControlIsNotVisibleElement();
+        Thread.sleep(2000);
         optionTaskList.buttonDots(newTaskName).click();
         optionTaskList.textEdit.click();
     }
@@ -78,7 +77,6 @@ public class TestBase {
         Assertions.assertTrue(editList.editTextBox.isControlDisplayed(), "Error! Task was not created");
     }
     @When("User update the task with {string}")
-    @Test
     public void updateTask(String newName) {
         updateTaskName = newName;
         editList.editTextBox.setText(updateTaskName);
@@ -90,7 +88,6 @@ public class TestBase {
         Assertions.assertTrue(taskList.labelTask(newTaskName + updateTaskName).isControlDisplayed(), "Error! Task was not updated");
     }
     @When("User delete the task")
-    @Test
     public void deleteTask() {
         optionTaskList.buttonDots(newTaskName+updateTaskName).click();
         optionTaskList.textDelete.isControlDisplayed();
